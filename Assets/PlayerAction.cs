@@ -9,31 +9,29 @@ public class PlayerAction : PlayerMovement
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponentInChildren<Animator>();
+        cam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /* if (Input.GetMouseButtonDown(0))
-         {
-             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-             if (Physics.Raycast(ray, out RaycastHit hit))
-             {
-                 if (hit.transform.tag == "Tree")
-                 {
-
-
-                     target = hitInfo.transform.gameObject;
-                     agent.SetDestination(hit.point);
-                     target.GetComponent<TreeInfo>().ChopTree();
-                 }
-             }
-         }*/
-        if (hitObject.transform.tag == "Tree")
+         if (Input.GetMouseButtonDown(0))
         {
-
-            target.GetComponent<TreeInfo>().ChopTree();
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                agent.SetDestination(hit.point);
+                hitObject = hit.transform.gameObject;
+                Debug.Log("Clicked" + hit.transform.name);
+            
+        
+                if (hit.transform.tag == "Tree")
+                {
+                     Debug.Log("Clicked tree");
+                    target.GetComponent<TreeInfo>().ChopTree();
+                }
+            }
         }
     }
 }

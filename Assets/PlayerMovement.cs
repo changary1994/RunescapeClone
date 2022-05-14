@@ -7,11 +7,12 @@ public class PlayerMovement : MonoBehaviour
 {
     protected Camera cam;
     protected NavMeshAgent agent;
-    [SerializeField] Animator animator;
+    [SerializeField] protected Animator animator;
     protected GameObject hitObject;
-
+    public bool cancel = false;
     const int IDLE = 0;
     const int RUN = 1;
+    string objectTag = "s";
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +20,13 @@ public class PlayerMovement : MonoBehaviour
         cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         animator.SetInteger("state", IDLE);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        cancel = false;
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -31,8 +34,28 @@ public class PlayerMovement : MonoBehaviour
             {
                 agent.SetDestination(hit.point);
                 hitObject = hit.transform.gameObject;
+                float distance = Vector3.Distance(agent.transform.position, hitObject.transform.position);
+                Debug.Log("Clicked" + hit.transform.name);
+                objectTag = hit.transform.tag;
+                if (distance < 3)
+                {
+                    switch (objectTag)
+                        {
+                            case "Tree":
+                                Debug.Log("Chopping Tree");
+                                hitObject.GetComponent<TreeInfo>().ChopTree();
+                                break;
+                            default:
+                                Debug.Log("Cancel");
+                                cancel = true;
+                                break;
+                        }
+                }
+                else cancel = true;
             }
+            
         }
+        
         
         if (agent.velocity != Vector3.zero)
         {
@@ -42,3 +65,4 @@ public class PlayerMovement : MonoBehaviour
             animator.SetInteger("state", IDLE);
     }
 }
+
