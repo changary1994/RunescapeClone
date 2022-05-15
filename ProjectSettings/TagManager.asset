@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tree
+  - Interactable Object
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interactable Objects
   - Water
   - UI
   - 

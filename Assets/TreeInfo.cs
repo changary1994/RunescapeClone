@@ -7,6 +7,7 @@ public class TreeInfo : MonoBehaviour
     [SerializeField] private int treeHealth = 5;
     bool isBeingChopped = false;
     bool interrupt = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +23,13 @@ public class TreeInfo : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
         interrupt = GameObject.Find("Player").GetComponent<PlayerMovement>().cancel;
         if (interrupt == true)
             {
                 Debug.Log("Cancelling");
                 StopAllCoroutines();
+                treeHealth = 5;
                 
             }
     }
