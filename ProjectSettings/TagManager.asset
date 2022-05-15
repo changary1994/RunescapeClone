@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Tree
   - Interactable Object
+  - InteractText
+  - InteractBar
   layers:
   - Default
   - TransparentFX
@@ -42,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 3506136249
     locked: 0

@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
         cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         playerAnimator.SetInteger("state", IDLE);
-
     }
 
     // Update is called once per frame

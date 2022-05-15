@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TreeInfo : MonoBehaviour
 {
-    [SerializeField] private int treeHealth = 5;
+    [SerializeField] public int treeHealth = 5;
     bool isBeingChopped = false;
     bool interrupt = false;
 
@@ -45,7 +45,7 @@ public class TreeInfo : MonoBehaviour
         isBeingChopped = true;
         while (treeHealth > 0 && isBeingChopped == true)
         {
-
+            GameObject.Find("Slider").GetComponent<FillBar>().CurrentValue += .2f;
             treeHealth = treeHealth - 1;
             Debug.Log(treeHealth);
             yield return new WaitForSeconds(1f);
