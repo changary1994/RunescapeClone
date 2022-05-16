@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] GameObject tree;
     public Vector3 spawnSpot;
+    [SerializeField] GameObject stump;
 
     public bool toRespawn = false;
     public float respawnRate = 10f;
@@ -32,6 +33,9 @@ public class SpawnManager : MonoBehaviour
     {
         spawnSpot = loc;
         canRespawn = respawnRate + Time.time;
+        //assign object to instantiate to variable so it can be destroyed later
+        GameObject tempStump = (GameObject)Instantiate (stump, spawnSpot, Quaternion.identity);
+        Destroy(tempStump, respawnRate);
     }
 
     public void respawnTree()

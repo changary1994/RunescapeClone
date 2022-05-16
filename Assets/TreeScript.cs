@@ -8,11 +8,16 @@ public class TreeScript : Interactable
     bool isBeingChopped = false;
     bool interrupt = false;
     bool inTreeTrigger = false;
+    
     [SerializeField] GameObject uiController;
+
+   
 
     void Start()
     {
         uiController = GameObject.Find("UIController");
+        
+        
     }
 
     void Update()
@@ -37,6 +42,7 @@ public class TreeScript : Interactable
         {
             inTreeTrigger = true;
             uiController.GetComponent<UIController>().showInteraction();
+            this.GetComponent<Outline>().OutlineWidth = 10f;
         }
     }
 
@@ -46,6 +52,7 @@ public class TreeScript : Interactable
         {
             inTreeTrigger = false;
             uiController.GetComponent<UIController>().hideInteraction();
+            this.GetComponent<Outline>().OutlineWidth = 0f;
         }
     }
 
