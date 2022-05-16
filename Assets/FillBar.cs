@@ -10,6 +10,7 @@ public class FillBar : MonoBehaviour
     //if I want to change text
     //public TMP_Text displayText;
     private float currentValue = 0f;
+    public bool resetBar = false;
 
     public float CurrentValue {
         get {
@@ -30,6 +31,10 @@ public class FillBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (resetBar == true)
+        {
+            CurrentValue = 0f;
+            resetBar = false;
+        }
     }
 }

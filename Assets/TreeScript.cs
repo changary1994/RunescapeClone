@@ -9,6 +9,7 @@ public class TreeScript : Interactable
     bool interrupt = false;
     bool inTreeTrigger = false;
     [SerializeField] GameObject uiController;
+
     void Start()
     {
         uiController = GameObject.Find("UIController");
@@ -16,7 +17,7 @@ public class TreeScript : Interactable
 
     void Update()
     {
-        if (inTreeTrigger = true && Input.GetKeyDown(KeyCode.F))
+        if (inTreeTrigger && Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(CoChopTree());
             uiController.GetComponent<UIController>().hideInteraction();
@@ -31,6 +32,7 @@ public class TreeScript : Interactable
 
     void OnTriggerEnter(Collider other)
     {
+
         if (other.tag == "Player")
         {
             inTreeTrigger = true;
@@ -47,6 +49,7 @@ public class TreeScript : Interactable
         }
     }
 
+    
     public override void Interact()
     {
         Debug.Log("Interacting with Tree.");
@@ -59,11 +62,15 @@ public class TreeScript : Interactable
             treeHealth = 5;
             interrupt = false;
             GameObject.Find("Player").GetComponent<PlayerMovement>().hitting = false;
-    }
-    public void ChopTree()
+            GameObject.Find("InteractSlider").GetComponent<FillBar>().resetBar = true;
+            uiController.GetComponent<UIController>().hideProgressBar(); 
+    } 
+    
+    void ChopTree()
     {
         StartCoroutine(CoChopTree());
     }
+    
     private IEnumerator CoChopTree()
     {
 
@@ -82,8 +89,10 @@ public class TreeScript : Interactable
         GameObject.Find("Player").GetComponent<PlayerMovement>().hitting = false;
         isBeingChopped = false;
         Debug.Log("Stopping"); 
+        GameObject.Find("InteractSlider").GetComponent<FillBar>().resetBar = true;
         GameObject.Find("SpawnManager").GetComponent<SpawnManager>().storeSpawnSpot(this.transform.position);  
         uiController.GetComponent<UIController>().hideProgressBar(); 
-        Destroy(this.gameObject);
+        GameObject.Find("SpawnManager").GetComponent<SpawnManager>().toRespawn = true;
+        Destroy(this.gameObject, 1f);
     }
 }
