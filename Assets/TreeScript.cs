@@ -8,7 +8,8 @@ public class TreeScript : Interactable
     bool isBeingChopped = false;
     bool interrupt = false;
     bool inTreeTrigger = false;
-    
+    int maxCount = 1;
+    int count = 0;
     [SerializeField] GameObject uiController;
 
    
@@ -82,8 +83,11 @@ public class TreeScript : Interactable
     {
 
         isBeingChopped = true;
-        uiController.GetComponent<UIController>().showProgressBar();
-        WaitForSeconds waitTime = new WaitForSeconds(1f);
+        if(count >= maxCount) // this makes sure that this coroutine only happens once per tree.
+                yield break;
+        count++;
+        uiController.GetComponent<UIController>().showProgressBar(); 
+        WaitForSeconds waitTime = new WaitForSeconds(1f); //create a wait timer to delay tree chopping
         GameObject.Find("Player").GetComponent<PlayerMovement>().hitting = true;
         while (treeHealth > 0 && isBeingChopped == true)
         {
@@ -96,10 +100,10 @@ public class TreeScript : Interactable
         GameObject.Find("Player").GetComponent<PlayerMovement>().hitting = false;
         isBeingChopped = false;
         Debug.Log("Stopping"); 
+        count--; // change this variable back to 0 so we can do this routine again now that it is done.
         GameObject.Find("InteractSlider").GetComponent<FillBar>().resetBar = true;
         GameObject.Find("SpawnManager").GetComponent<SpawnManager>().storeSpawnSpot(this.transform.position);  
         uiController.GetComponent<UIController>().hideProgressBar(); 
-        GameObject.Find("SpawnManager").GetComponent<SpawnManager>().toRespawn = true;
         Destroy(this.gameObject, 1f);
     }
 }

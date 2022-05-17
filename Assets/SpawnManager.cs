@@ -11,9 +11,8 @@ public class SpawnManager : MonoBehaviour
 
     public bool toRespawn = false;
     public float respawnRate = 10f;
-    private float canRespawn = 0f;
-    const int NUM_TREES = 10;
-    // Start is called before the first frame update
+    //const int NUM_TREES = 10;
+    //Start is called before the first frame update
     void Start()
     {
          
@@ -22,25 +21,28 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (toRespawn == true && Time.time > canRespawn)
+       /* if (toRespawn == true && Time.time > canRespawn)
         {
             respawnTree();
             toRespawn = false;
-        }
+        }*/
     }
 
     public void storeSpawnSpot(Vector3 loc)
     {
         spawnSpot = loc;
-        canRespawn = respawnRate + Time.time;
         //assign object to instantiate to variable so it can be destroyed later
         GameObject tempStump = (GameObject)Instantiate (stump, spawnSpot, Quaternion.identity);
+        StartCoroutine(respawnTree());
         Destroy(tempStump, respawnRate);
     }
 
-    public void respawnTree()
+    private IEnumerator respawnTree()
     {
-        Instantiate(tree, spawnSpot, Quaternion.identity);
+        Vector3 tempSpot;
+        tempSpot = spawnSpot;
+        yield return new WaitForSeconds(respawnRate);
+        Instantiate(tree,  tempSpot, Quaternion.identity);
     }
 
     // void spawnTree()
