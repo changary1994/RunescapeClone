@@ -4,10 +4,9 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
     protected Camera cam;
-    protected NavMeshAgent agent;
+    public NavMeshAgent agent;
     [SerializeField] public Animator playerAnimator;
     protected GameObject hitObject;
-    public bool cancel = false;
     public bool hitting = false;
     bool playerHitting = false;
     const int IDLE = 0;
@@ -25,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cancel = false;
         if (Input.GetMouseButtonDown(0))
         {
             MovePlayer();
@@ -60,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             agent.SetDestination(hit.point);
-            cancel = true;
         }
     }
 }
