@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5814577530253211279}
   - component: {fileID: 5814577530253211286}
   - component: {fileID: 5814577530253211285}
-  - component: {fileID: 6904396337228163270}
+  - component: {fileID: 696540474434994300}
   m_Layer: 3
   m_Name: Tree1 (1)
   m_TagString: Tree
@@ -130,7 +130,8 @@ MonoBehaviour:
   playerAgent: {fileID: 0}
   treeHealth: 5
   uiController: {fileID: 0}
---- !u!114 &6904396337228163270
+  player: {fileID: 0}
+--- !u!114 &696540474434994300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5814577530253111329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 548bc0ec831fdc84883a14a6c1439042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0

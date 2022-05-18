@@ -37,7 +37,7 @@ public class TreeScript : Interactable
         {
             inTreeTrigger = true;
             uiController.GetComponent<UIController>().showInteraction();
-            this.GetComponent<Outline>().OutlineWidth = 10f;
+            this.GetComponent<Outlines>().OutlineWidth = 10f;
         }
     }
 
@@ -47,7 +47,7 @@ public class TreeScript : Interactable
         {
             inTreeTrigger = false;
             uiController.GetComponent<UIController>().hideInteraction();
-            this.GetComponent<Outline>().OutlineWidth = 0f;
+            this.GetComponent<Outlines>().OutlineWidth = 0f;
         }
     }
 
