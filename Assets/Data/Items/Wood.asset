@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c01564d189c0d4aa39adbc6b889126, type: 3}
+  m_Name: Wood
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 2928987240062637909, guid: ad8cd1f3ec92b0d43b8a585deeb879d3, type: 3}
+  itemSprite: {fileID: 21300000, guid: bc28f90f68d9dc542872142a0ae1fccc, type: 3}
+  itemName: Wood
+  itemLocalPosition: {x: 0, y: 0, z: 0}
+  itemLocalRotation: {x: 0, y: 0, z: 0}
