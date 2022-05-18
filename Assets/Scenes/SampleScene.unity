@@ -1001,7 +1001,6 @@ GameObject:
   - component: {fileID: 1037211220}
   - component: {fileID: 1037211219}
   - component: {fileID: 1037211223}
-  - component: {fileID: 1037211224}
   m_Layer: 5
   m_Name: UIController
   m_TagString: Untagged
@@ -1103,18 +1102,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 504796e0e9d7c0645a38db3bc0bc46b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1037211224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037211218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ae114229cccd74a85809327e1360bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1098816364
@@ -1533,6 +1520,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08eb36f47dd7d4d4fa749430894880f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 679b1d5db31f2a34191497c0f88eda3e, type: 2}
+  inventoryUIParent: {fileID: 1098816365}
+  helmetAnchor: {fileID: 0}
+  leftHandAnchor: {fileID: 0}
+  rightHandAnchor: {fileID: 0}
+  armorAnchor: {fileID: 0}
+  woodItem: {fileID: 11400000, guid: 6d83375845f472c4e9f49848dd9cd34e, type: 2}
+  chopComplete: 0
 --- !u!1 &1647779503
 GameObject:
   m_ObjectHideFlags: 0

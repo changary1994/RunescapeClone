@@ -20,6 +20,7 @@ public class InventorySlot : MonoBehaviour
 
     public void UpdateSlotCount(int itemCount)
     {
+        Debug.Log("Update" + itemCount);
         itemCountText.text = itemCount.ToString();
     }
 

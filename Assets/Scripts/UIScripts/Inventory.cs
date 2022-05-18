@@ -37,18 +37,18 @@ public class Inventory : ScriptableObject
         }
     }
 
-    /*
-    public void OpenInventoryUI() // open inventory if it is a toggle
+    
+    public void OpenInventoryUI() // open inventory
     {
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.InitInventoryUI(this);
     }
-    */
+    
 
 
     public void AssignItem(InventoryItem item)
     {
-        Debug.Log(string.Format("Player Assigned {0} item", item.GetName()));
+        item.AssignItemToPlayer(playerEquipment);
     }
 
     public Dictionary<InventoryItem, int> GetAllItemsMap()
@@ -61,13 +61,14 @@ public class Inventory : ScriptableObject
         int currentItemCount;
         if(itemToCountMap.TryGetValue(item, out currentItemCount)) //Check if item exists. If it does, get the count if there is one. If no count, add entrance to item dictionary.
         {
+            Debug.Log(currentItemCount);
             itemToCountMap[item] = currentItemCount + count;
         }
         else
         {
             itemToCountMap.Add(item, count);
         }
-        inventoryUI.CreateOrUpdateSlot(this, item, count);
+        inventoryUI.CreateOrUpdateSlot(this, item, currentItemCount + count);
     }
 
     public void RemoveItem(InventoryItem item, int count)

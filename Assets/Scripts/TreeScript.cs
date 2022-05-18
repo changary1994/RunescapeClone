@@ -18,7 +18,6 @@ public class TreeScript : Interactable
     {
         uiController = GameObject.Find("UIController");
         player = GameObject.Find("Player");
-        
     }
 
     void Update()
@@ -91,13 +90,14 @@ public class TreeScript : Interactable
             Debug.Log(treeHealth);
             yield return waitTime;
         }
+        player.GetComponent<PlayerEquipmentController>().chopComplete = true;
         player.GetComponent<PlayerMovement>().hitting = false;
         isBeingChopped = false;
         Debug.Log("Stopping"); 
         count--; // change this variable back to 0 so we can do this routine again now that it is done.
         GameObject.Find("InteractSlider").GetComponent<FillBar>().resetBar = true;
         GameObject.Find("SpawnManager").GetComponent<SpawnManager>().storeSpawnSpot(this.transform.position);  
-        uiController.GetComponent<UIController>().hideProgressBar(); 
+        uiController.GetComponent<UIController>().hideProgressBar();
         Destroy(this.gameObject, 1f);
     }
 }

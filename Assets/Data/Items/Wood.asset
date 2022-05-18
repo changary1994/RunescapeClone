@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c01564d189c0d4aa39adbc6b889126, type: 3}
+  m_Script: {fileID: 11500000, guid: e595ab70e6b25d84f9c59ce8ec5db358, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 2928987240062637909, guid: ad8cd1f3ec92b0d43b8a585deeb879d3, type: 3}

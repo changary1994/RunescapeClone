@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Inventory System/Item")]
-
-public class InventoryItem : ScriptableObject
+public abstract class InventoryItem : ScriptableObject
 {
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private Sprite itemSprite;
@@ -37,7 +35,7 @@ public class InventoryItem : ScriptableObject
         return Quaternion.Euler(itemLocalRotation);
     }
 
-
+    public abstract void AssignItemToPlayer(PlayerEquipmentController playerEquipment);
 
 
 }
