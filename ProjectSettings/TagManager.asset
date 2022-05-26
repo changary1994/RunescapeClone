@@ -8,6 +8,7 @@ TagManager:
   - Interactable Object
   - InteractText
   - InteractBar
+  - Attackable
   layers:
   - Default
   - TransparentFX
