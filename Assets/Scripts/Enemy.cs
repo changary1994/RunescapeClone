@@ -2,21 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NeutralObject : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int health = 10;
+    protected int health;
+    protected float speed;
+    protected Vector3 movementDestination;
+    [SerializeField] protected Transform player;
+
+
     bool isAttacked = false;
     float hitCooldown = 1f;
     float canHit = 0f;
     const int MAX_HEALTH = 10;
-    void Start()
+    protected void Start()
     {
         
     }
 
+    protected virtual void Init()
+    {
+
+    }
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if(isAttacked && Time.time > canHit)
         {
@@ -29,21 +38,23 @@ public class NeutralObject : MonoBehaviour
         }
     }
 
-    void Damage()
+    protected virtual void Move()
     {
-        isAttacked = true;
+
     }
 
-    void StopDamage()
+    protected virtual void Attack()
     {
-        isAttacked = false;
+
     }
 
-    private void Reset()
+    
+
+    protected virtual void Reset()
     {
         health = MAX_HEALTH;
     }
-    private void OnDeath()
+    protected virtual void OnDeath()
     {
         Destroy(this.gameObject);
     }
