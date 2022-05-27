@@ -1,22 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     protected int health;
     protected float speed;
-    protected Vector3 movementDestination;
     [SerializeField] protected Transform player;
     protected Animator anim;
+    protected NavMeshAgent agent;
 
 
 
     bool isAttacked = false;
     float hitCooldown = 1f;
     float canHit = 0f;
-    const int MAX_HEALTH = 10;
+    protected const int MAX_HEALTH = 10;
+
+    protected Vector3 movementDestination;
+    protected Vector3 startPosition;
+    protected float wanderRange = 5f;
+    private bool wandering = true;
+    private bool chasing = true;
     protected void Start()
     {
         Init();
@@ -24,37 +31,53 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Init()
     {
-        anim = GetComponentInChildren<Animator>();
-        if (anim == null)
-        {
-            Debug.LogError(transform.name + "Animator is NULL.");
-        }
+        //anim = GetComponentInChildren<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
+        startPosition = this.transform.position;
+        NavMeshHit closestHit;
+        if (NavMesh.SamplePosition(this.transform.position, out closestHit, 500f, NavMesh.AllAreas))
+            this.transform.position = closestHit.position;
+        //if (anim == null)
+        //{
+        //   Debug.LogError(transform.name + "Animator is NULL.");
+        //}
     }
     // Update is called once per frame
     protected virtual void Update()
     {
         //if animation is idle and not in combat, then do not move this frame
-       if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle_anim") && !anim.GetBool("InCombat"))
-        {
-            return;
-        }
+       //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle_anim") && !anim.GetBool("InCombat"))
+        //{
+         //   return;
+        //}
 
         Move();
     }
-    // TODO: continue movement AI
+
     protected virtual void Move()
     {
+        movementDestination = FindNewPosition();
         //if not attacked, move to new position
         if (!isAttacked)
         {
-            transform.position = Vector3.MoveTowards(transform.position, movementDestination, speed * Time.deltaTime);
+            agent.SetDestination(movementDestination);
         }
+
+
+
         //if player moves out of range, stop combat
         if (Vector3.Distance(player.position, transform.position) > 2f)
         {
             isAttacked = false;
-            anim.SetBool("InCombat", false);
+          //  anim.SetBool("InCombat", false);
         }
+    }
+
+    protected virtual Vector3 FindNewPosition()
+    {
+        Vector3 newPosition = startPosition + new Vector3(Random.Range(-wanderRange, wanderRange), 0, Random.Range(-wanderRange, wanderRange));
+        return newPosition;
     }
 
     protected virtual void Attack()
@@ -67,6 +90,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Reset()
     {
         health = MAX_HEALTH;
+        agent.SetDestination(startPosition);
     }
     protected virtual void OnDeath()
     {
