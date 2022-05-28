@@ -16,6 +16,11 @@ public class Bull : Enemy
     }
     // Update is called once per fram
 
+    protected override bool CheckIdle()
+    {
+        return base.CheckIdle();
+    }
+
     protected override void Move()
     {
         base.Move();

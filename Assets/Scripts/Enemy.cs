@@ -7,7 +7,6 @@ public abstract class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     protected int health;
-    protected float speed = 10;
     [SerializeField] protected Transform player;
     protected Animator anim;
     protected NavMeshAgent agent;
@@ -24,6 +23,9 @@ public abstract class Enemy : MonoBehaviour
     protected float wanderRange = 5f;
     private bool wandering = true;
     private bool chasing = true;
+    private bool isIdle = false;
+
+    protected const int WALK = 4;
     protected void Start()
     {
         Init();
@@ -31,30 +33,46 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Init()
     {
-        //anim = GetComponentInChildren<Animator>();
+        anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
         startPosition = this.transform.position;
         NavMeshHit closestHit;
         if (NavMesh.SamplePosition(this.transform.position, out closestHit, 500f, NavMesh.AllAreas))
             this.transform.position = closestHit.position;
-        //if (anim == null)
-        //{
-        //   Debug.LogError(transform.name + "Animator is NULL.");
-        //}
+        if (anim == null)
+        {
+           Debug.LogError(transform.name + "Animator is NULL.");
+        }
 
-        InvokeRepeating("Move", 1f, 5f);
+        InvokeRepeating("Move", 1f, 8f);
     }
-    // Update is called once per frame
+ 
     protected virtual void Update()
     {
         //if animation is idle and not in combat, then do not move this frame
-        //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle_anim") && !anim.GetBool("InCombat"))
-        //{
-        //   return;
-        //}  
+        isIdle = CheckIdle();
+      
+
+        if (agent.velocity == Vector3.zero)
+        {
+            anim.SetInteger("state", Random.Range(0,3));
+        }
     }
 
+    protected virtual bool CheckIdle()
+    {
+        bool idle;
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Idle2") ||
+            anim.GetCurrentAnimatorStateInfo(0).IsName("Idle3") || anim.GetCurrentAnimatorStateInfo(0).IsName("Idle4"))
+        {
+            idle = true;
+        }
+        else
+        {
+            idle = false;
+        }
+        return idle;
+    }
     protected virtual void Move()
     {
         Debug.Log("Called Move");
@@ -64,6 +82,7 @@ public abstract class Enemy : MonoBehaviour
         {
             agent.SetDestination(movementDestination);
             Debug.Log("Attempted to move agent to " + movementDestination);
+            anim.SetInteger("state", WALK);
         }
 
 
@@ -78,6 +97,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual Vector3 FindNewPosition()
     {
+        //Wander by using the start position as base, and adding a max wander range in respective coordinates, return that new vector3 as a new position
         Vector3 newPosition = startPosition + new Vector3(Random.Range(-wanderRange, wanderRange), 0, Random.Range(-wanderRange, wanderRange));
         return newPosition;
     }
