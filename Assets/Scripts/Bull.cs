@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bull : Enemy
 {
-    // Start is called before the first frame update
+
     protected override void Init()
     {
         base.Init();
@@ -23,8 +23,7 @@ public class Bull : Enemy
 
     protected override Vector3 FindNewPosition()
     {
-        Vector3 newPosition = startPosition + new Vector3(Random.Range(-wanderRange, wanderRange), 0, Random.Range(-wanderRange, wanderRange));
-        return newPosition;
+        return base.FindNewPosition();
     }
 
     protected virtual void Attack()

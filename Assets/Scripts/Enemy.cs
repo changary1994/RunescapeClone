@@ -7,7 +7,7 @@ public abstract class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     protected int health;
-    protected float speed;
+    protected float speed = 10;
     [SerializeField] protected Transform player;
     protected Animator anim;
     protected NavMeshAgent agent;
@@ -42,26 +42,28 @@ public abstract class Enemy : MonoBehaviour
         //{
         //   Debug.LogError(transform.name + "Animator is NULL.");
         //}
+
+        InvokeRepeating("Move", 1f, 5f);
     }
     // Update is called once per frame
     protected virtual void Update()
     {
         //if animation is idle and not in combat, then do not move this frame
-       //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle_anim") && !anim.GetBool("InCombat"))
+        //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle_anim") && !anim.GetBool("InCombat"))
         //{
-         //   return;
-        //}
-
-        Move();
+        //   return;
+        //}  
     }
 
     protected virtual void Move()
     {
+        Debug.Log("Called Move");
         movementDestination = FindNewPosition();
         //if not attacked, move to new position
         if (!isAttacked)
         {
             agent.SetDestination(movementDestination);
+            Debug.Log("Attempted to move agent to " + movementDestination);
         }
 
 
