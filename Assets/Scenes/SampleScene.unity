@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 412418322}
   - component: {fileID: 412418321}
   - component: {fileID: 412418325}
+  - component: {fileID: 412418326}
   m_Layer: 0
   m_Name: RecoveryZone
   m_TagString: Untagged
@@ -459,6 +460,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02ded88fceb7a25489e6074bcb46f24d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &412418326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412418320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3b5a66474d3d24fb17767270514013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &579572993
@@ -1670,6 +1683,7 @@ GameObject:
   - component: {fileID: 1476083127}
   - component: {fileID: 1476083126}
   - component: {fileID: 1476083128}
+  - component: {fileID: 1476083129}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1832,6 +1846,18 @@ MonoBehaviour:
   rightHandAnchor: {fileID: 0}
   armorAnchor: {fileID: 0}
   woodItem: {fileID: 11400000, guid: 6d83375845f472c4e9f49848dd9cd34e, type: 2}
+--- !u!114 &1476083129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476083119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1f5cff919b8bb4280436730ec31afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1647779503
 GameObject:
   m_ObjectHideFlags: 0

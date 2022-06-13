@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
+//using DG.Tweening;
 public class TestTween : MonoBehaviour
 {
     [SerializeField] GameObject player;
@@ -18,6 +18,6 @@ public class TestTween : MonoBehaviour
     void Update()
     {
         follow = player.transform.position;
-        transform.DOMove(follow, 1);
+        //transform.DOMove(follow, 1);
     }
 }

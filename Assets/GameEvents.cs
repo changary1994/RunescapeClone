@@ -24,4 +24,14 @@ public class GameEvents : MonoBehaviour
             onRecoveryZoneTriggerEnter();
         }
     }
+    
+    public event Action onRecoveryZoneTriggerExit;
+
+    public void RecoveryZoneExit()
+    {
+        if (onRecoveryZoneTriggerExit != null)
+        {
+            onRecoveryZoneTriggerExit();
+        }
+    }
 }
