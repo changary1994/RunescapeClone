@@ -22,7 +22,7 @@ public class PlayerEquipmentController : MonoBehaviour
     [SerializeField] private WoodInventoryItem woodItem;
 
     //Get update to add item
-    public bool chopComplete = false;
+    //public bool chopComplete = false;
     private void Start()
     {
         inventory.InitInventory(this);
@@ -31,12 +31,12 @@ public class PlayerEquipmentController : MonoBehaviour
 
     private void Update()
     {
-        if (chopComplete)
+        /*if (chopComplete)
         {
             AssignWoodItem(woodItem);
             chopComplete = false;
             Debug.Log(chopComplete);
-        }
+        }*/
     }
 
     public void AssignHelmetItem(HelmetInventoryItem item)

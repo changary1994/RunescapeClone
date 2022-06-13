@@ -59,7 +59,7 @@ public class Inventory : ScriptableObject
     public void AddItem(InventoryItem item, int count)
     {
         int currentItemCount;
-        if(itemToCountMap.TryGetValue(item, out currentItemCount)) //Check if item exists. If it does, get the count if there is one. If no count, add entrance to item dictionary.
+        if(itemToCountMap.TryGetValue(item, out currentItemCount)) //Check if item exists. If it does, get the count if there is one. If no count, add entry to item dictionary.
         {
             Debug.Log(currentItemCount);
             itemToCountMap[item] = currentItemCount + count;
@@ -88,7 +88,7 @@ public class Inventory : ScriptableObject
         }
         else
         {
-            Debug.Log(string.Format("Cannot remove nonexistent item."));
+            Debug.Log("Cannot remove nonexistent item.");
         }
     }
 

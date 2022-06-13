@@ -12,7 +12,7 @@ public class WoodInventoryItem : InventoryItem
 
     public void WoodInteraction()
     {
-      
+      //TODO: Add combinations for wood inventory item with other items.
     }
 
 }
